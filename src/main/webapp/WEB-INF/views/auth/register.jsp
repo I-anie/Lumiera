@@ -40,7 +40,8 @@
 
                 <div class="mb-3">
                     <label for="confirmPassword" class="form-label">비밀번호 확인</label>
-                    <form:password path="confirmPassword" id="confirmPassword" cssClass="form-control" placeholder="비밀번호를 다시 입력하세요"/>
+                    <form:password path="confirmPassword" id="confirmPassword" cssClass="form-control"
+                                   placeholder="비밀번호를 다시 입력하세요"/>
                     <form:errors path="confirmPassword" element="div" cssClass="field-error"/>
                 </div>
 

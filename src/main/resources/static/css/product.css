@@ -37,3 +37,16 @@
     gap: 10px;
     flex-wrap: wrap;
 }
+
+.product-name-cell {
+    min-width: 260px;
+    width: 32%;
+}
+
+.product-name-link {
+    display: block;
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+}

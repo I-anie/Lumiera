@@ -75,7 +75,8 @@
 
                                 <div class="mb-3">
                                     <label class="form-label" for="quantity">수량</label>
-                                    <form:input path="quantity" id="quantity" type="number" min="1" cssClass="form-control"/>
+                                    <form:input path="quantity" id="quantity" type="number" min="1"
+                                                cssClass="form-control"/>
                                     <form:errors path="quantity" element="div" cssClass="field-error"/>
                                 </div>
 

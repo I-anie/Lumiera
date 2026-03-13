@@ -31,7 +31,7 @@
     <div class="content-card mb-4">
         <div class="card-section">
             <form:form modelAttribute="searchCondition" action="${orderUrl}" method="get" cssClass="order-search-form">
-                <input type="hidden" name="page" value="${pageHandler.page}">
+                <input type="hidden" name="page" value="1">
 
                 <sec:authorize access="hasRole('ADMIN')">
                     <form:select path="deleted" cssClass="form-select">

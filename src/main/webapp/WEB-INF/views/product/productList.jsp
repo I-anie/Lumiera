@@ -36,7 +36,7 @@
                            method="get"
                            cssClass="product-search-form">
 
-                    <input type="hidden" name="page" value="${pageHandler.page}"/>
+                    <input type="hidden" name="page" value="1"/>
 
                     <sec:authorize access="hasRole('ADMIN')">
                         <select name="deleted" class="form-select">
