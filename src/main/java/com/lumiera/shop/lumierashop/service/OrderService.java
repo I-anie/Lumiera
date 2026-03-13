@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static com.lumiera.shop.lumierashop.global.error.code.ErrorCode.CART_ITEM_NOT_FOUND;
 import static com.lumiera.shop.lumierashop.global.error.code.ErrorCode.ORDER_NOT_FOUND;
 
 @Service
@@ -23,6 +24,7 @@ import static com.lumiera.shop.lumierashop.global.error.code.ErrorCode.ORDER_NOT
 public class OrderService {
 
     private final OrderMapper orderMapper;
+    private final OrderItemService orderItemService;
     private final CartMapper cartMapper;
 
     public List<Order> getOrderList(
@@ -40,10 +42,17 @@ public class OrderService {
     public Long createOrder(List<Long> cartItemIds, String username) {
         List<CartResponse> cartItems = cartMapper.findCartItemsByIds(cartItemIds, username);
 
+        if (cartItems.isEmpty() || cartItems.size() != cartItemIds.size()) {
+            throw new CustomException(CART_ITEM_NOT_FOUND);
+        }
+
         Order order = new Order(calculateTotalPrice(cartItems), username);
         orderMapper.save(order);
 
-        return order.getId();
+        Long orderId = order.getId();
+        orderItemService.createOrderItem(orderId, cartItems);
+
+        return orderId;
     }
 
     public OrderResponse getOrder(Long orderId, String username) {

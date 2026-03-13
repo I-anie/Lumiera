@@ -7,7 +7,6 @@ import com.lumiera.shop.lumierashop.dto.request.OrderSearchCondition;
 import com.lumiera.shop.lumierashop.global.common.pagination.PageHandler;
 import com.lumiera.shop.lumierashop.global.common.pagination.PaginationService;
 import com.lumiera.shop.lumierashop.global.security.CustomUserDetails;
-import com.lumiera.shop.lumierashop.service.OrderItemService;
 import com.lumiera.shop.lumierashop.service.OrderService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +32,6 @@ public class OrderController {
     private static final String REDIRECT_ORDER_LIST = "redirect:/orders";
 
     private final OrderService orderService;
-    private final OrderItemService orderItemService;
     private final PaginationService paginationService;
 
     @GetMapping
@@ -85,7 +83,6 @@ public class OrderController {
         List<Long> cartItemIds = createForm.getCartItemIds();
 
         Long orderId = orderService.createOrder(cartItemIds, username);
-        orderItemService.createOrderItem(orderId, cartItemIds, username);
 
         return REDIRECT_ORDER + orderId;
     }
