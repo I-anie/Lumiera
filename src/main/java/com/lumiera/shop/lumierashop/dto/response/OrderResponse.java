@@ -15,7 +15,7 @@ public class OrderResponse {
 
     private Long id;
     private String username;
-    private String totalPrice;
+    private int totalPrice;
     private OrderStatus status;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

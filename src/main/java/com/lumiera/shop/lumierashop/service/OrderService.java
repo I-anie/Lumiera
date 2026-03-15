@@ -3,6 +3,7 @@ package com.lumiera.shop.lumierashop.service;
 import com.lumiera.shop.lumierashop.domain.Order;
 import com.lumiera.shop.lumierashop.domain.enums.OrderStatus;
 import com.lumiera.shop.lumierashop.dto.response.CartResponse;
+import com.lumiera.shop.lumierashop.dto.response.OrderItemResponse;
 import com.lumiera.shop.lumierashop.dto.response.OrderResponse;
 import com.lumiera.shop.lumierashop.global.error.exception.CustomException;
 import com.lumiera.shop.lumierashop.mapper.CartMapper;
@@ -15,8 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.lumiera.shop.lumierashop.global.error.code.ErrorCode.CART_ITEM_NOT_FOUND;
-import static com.lumiera.shop.lumierashop.global.error.code.ErrorCode.ORDER_NOT_FOUND;
+import static com.lumiera.shop.lumierashop.domain.enums.OrderStatus.PENDING;
+import static com.lumiera.shop.lumierashop.global.error.code.ErrorCode.*;
 
 @Service
 @RequiredArgsConstructor
@@ -26,6 +27,7 @@ public class OrderService {
     private final OrderMapper orderMapper;
     private final OrderItemService orderItemService;
     private final CartMapper cartMapper;
+    private final ProductService productService;
 
     public List<Order> getOrderList(
             int offset,
@@ -73,6 +75,19 @@ public class OrderService {
 
     @Transactional
     public void mockPay(Long orderId, String username) {
+        OrderResponse order = getOrder(orderId, username);
+
+        if (!PENDING.equals(order.getStatus())) {
+            throw new CustomException(INVALID_ORDER_STATUS);
+        }
+
+        List<OrderItemResponse> orderItems = order.getOrderItems();
+        if (orderItems.isEmpty()) {
+            throw new CustomException(ORDER_ITEM_NOT_FOUND);
+        }
+
+        productService.decreaseStockQuantity(orderItems);
+
         int affectedRows = orderMapper.updateStatus(orderId, username);
         validateAffectedRows(affectedRows);
     }

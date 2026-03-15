@@ -3,7 +3,6 @@ package com.lumiera.shop.lumierashop.mapper;
 import com.lumiera.shop.lumierashop.dto.response.ProductListResponse;
 import com.lumiera.shop.lumierashop.dto.response.ProductResponse;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.lang.Nullable;
 
 import java.util.List;
 
@@ -23,4 +22,6 @@ public interface ProductMapper {
     );
 
     int findStockQuantity(@Param("productId") Long productId);
+
+    int decreaseStockQuantity(@Param("productId") Long productId, @Param("quantity") int quantity);
 }

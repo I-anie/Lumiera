@@ -60,4 +60,11 @@
         FROM products
         WHERE id = #{productId}
     </select>
+
+    <update id="decreaseStockQuantity">
+        UPDATE products
+        SET stock_quantity = stock_quantity - #{quantity}
+        WHERE id = #{productId}
+        AND stock_quantity >= #{quantity}
+    </update>
 </mapper>

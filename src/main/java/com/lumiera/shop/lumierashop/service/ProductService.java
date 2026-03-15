@@ -1,5 +1,6 @@
 package com.lumiera.shop.lumierashop.service;
 
+import com.lumiera.shop.lumierashop.dto.response.OrderItemResponse;
 import com.lumiera.shop.lumierashop.dto.response.ProductListResponse;
 import com.lumiera.shop.lumierashop.dto.response.ProductResponse;
 import com.lumiera.shop.lumierashop.global.error.exception.CustomException;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static com.lumiera.shop.lumierashop.global.error.code.ErrorCode.INSUFFICIENT_STOCK;
 import static com.lumiera.shop.lumierashop.global.error.code.ErrorCode.PRODUCT_NOT_FOUND;
 
 @Service
@@ -42,5 +44,16 @@ public class ProductService {
 
     public int getStockQuantity(Long productId) {
         return productMapper.findStockQuantity(productId);
+    }
+
+    @Transactional
+    public void decreaseStockQuantity(List<OrderItemResponse> orderItems) {
+        for (OrderItemResponse orderItem : orderItems) {
+            int affectedRows = productMapper.decreaseStockQuantity(orderItem.getProductId(), orderItem.getQuantity());
+
+            if (affectedRows == 0) {
+                throw new CustomException(INSUFFICIENT_STOCK);
+            }
+        }
     }
 }
