@@ -1,6 +1,6 @@
 package com.lumiera.shop.lumierashop.service;
 
-import com.lumiera.shop.lumierashop.global.error.exception.CustomException;
+import com.lumiera.shop.lumierashop.global.exception.exception.CustomException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import static com.lumiera.shop.lumierashop.global.error.code.ErrorCode.FILE_NOT_FOUND;
-import static com.lumiera.shop.lumierashop.global.error.code.ErrorCode.FILE_UPLOAD_FAILED;
+import static com.lumiera.shop.lumierashop.global.exception.code.ErrorCode.FILE_NOT_FOUND;
+import static com.lumiera.shop.lumierashop.global.exception.code.ErrorCode.FILE_UPLOAD_FAILED;
 
 @Service
 public class FileUploadService {

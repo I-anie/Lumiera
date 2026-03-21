@@ -11,11 +11,11 @@ public class OrderItem {
 
     private Long id;
     private Long orderId;
-    private Integer price;
+    private int price;
     private Long productId;
-    private Integer quantity;
+    private int quantity;
 
-    public OrderItem(Long orderId, Integer price, Long productId, Integer quantity) {
+    public OrderItem(Long orderId, int price, Long productId, int quantity) {
         this.orderId = orderId;
         this.price = price;
         this.productId = productId;

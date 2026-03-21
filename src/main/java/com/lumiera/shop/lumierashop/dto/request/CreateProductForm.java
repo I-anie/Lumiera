@@ -26,11 +26,11 @@ public class CreateProductForm {
 
     @NotNull(message = "가격을 입력해주세요.")
     @Min(value = 1000, message = "가격은 최소 1000원 부터 입력 가능합니다.")
-    private Integer price;
+    private int price;
 
     @NotNull(message = "재고 수량을 입력해주세요.")
     @PositiveOrZero(message = "재고 수량은 0 이상이어야 합니다.")
-    private Integer stockQuantity;
+    private int stockQuantity;
 
     @NotEmptyMultipartFile(message = "대표 이미지를 등록해주세요.")
     private MultipartFile thumbnail;

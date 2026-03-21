@@ -5,7 +5,7 @@ import com.lumiera.shop.lumierashop.domain.enums.OrderStatus;
 import com.lumiera.shop.lumierashop.dto.response.CartResponse;
 import com.lumiera.shop.lumierashop.dto.response.OrderItemResponse;
 import com.lumiera.shop.lumierashop.dto.response.OrderResponse;
-import com.lumiera.shop.lumierashop.global.error.exception.CustomException;
+import com.lumiera.shop.lumierashop.global.exception.exception.CustomException;
 import com.lumiera.shop.lumierashop.mapper.CartMapper;
 import com.lumiera.shop.lumierashop.mapper.OrderMapper;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.lumiera.shop.lumierashop.domain.enums.OrderStatus.PENDING;
-import static com.lumiera.shop.lumierashop.global.error.code.ErrorCode.*;
+import static com.lumiera.shop.lumierashop.global.exception.code.ErrorCode.*;
 
 @Service
 @RequiredArgsConstructor

@@ -5,7 +5,7 @@ import com.lumiera.shop.lumierashop.domain.Product;
 import com.lumiera.shop.lumierashop.domain.User;
 import com.lumiera.shop.lumierashop.domain.enums.OrderStatus;
 import com.lumiera.shop.lumierashop.dto.response.OrderResponse;
-import com.lumiera.shop.lumierashop.global.error.exception.CustomException;
+import com.lumiera.shop.lumierashop.global.exception.exception.CustomException;
 import com.lumiera.shop.lumierashop.mapper.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -13,6 +13,6 @@ public class OrderItemResponse {
     private Long productId;
     private String thumbnailUrl;
     private String name;
-    private Integer price;
-    private Integer quantity;
+    private int price;
+    private int quantity;
 }

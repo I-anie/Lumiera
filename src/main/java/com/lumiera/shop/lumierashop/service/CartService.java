@@ -3,7 +3,7 @@ package com.lumiera.shop.lumierashop.service;
 import com.lumiera.shop.lumierashop.domain.CartItem;
 import com.lumiera.shop.lumierashop.dto.request.CartItemForm;
 import com.lumiera.shop.lumierashop.dto.response.CartResponse;
-import com.lumiera.shop.lumierashop.global.error.exception.CustomException;
+import com.lumiera.shop.lumierashop.global.exception.exception.CustomException;
 import com.lumiera.shop.lumierashop.mapper.CartMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,8 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static com.lumiera.shop.lumierashop.global.error.code.ErrorCode.CART_ITEM_NOT_FOUND;
-import static com.lumiera.shop.lumierashop.global.error.code.ErrorCode.CART_QUANTITY_EXCEEDS_STOCK;
+import static com.lumiera.shop.lumierashop.global.exception.code.ErrorCode.CART_ITEM_NOT_FOUND;
+import static com.lumiera.shop.lumierashop.global.exception.code.ErrorCode.CART_QUANTITY_EXCEEDS_STOCK;
 
 @Service
 @RequiredArgsConstructor

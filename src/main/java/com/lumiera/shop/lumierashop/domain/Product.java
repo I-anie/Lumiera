@@ -15,13 +15,13 @@ public class Product {
     private String thumbnailUrl;
     private Long categoryId;
     private String name;
-    private Integer price;
-    private Integer stockQuantity;
+    private int price;
+    private int stockQuantity;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private LocalDateTime deletedAt;
 
-    public Product(String thumbnailUrl, Long categoryId, String name, Integer price, Integer stockQuantity) {
+    public Product(String thumbnailUrl, Long categoryId, String name, int price, int stockQuantity) {
         this.thumbnailUrl = thumbnailUrl;
         this.categoryId = categoryId;
         this.name = name;

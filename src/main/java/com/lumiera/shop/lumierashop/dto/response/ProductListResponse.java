@@ -15,7 +15,7 @@ public class ProductListResponse {
     private String thumbnailUrl;
     private String type;
     private String name;
-    private Integer price;
-    private Integer stockQuantity;
+    private int price;
+    private int stockQuantity;
     private LocalDateTime createdAt;
 }

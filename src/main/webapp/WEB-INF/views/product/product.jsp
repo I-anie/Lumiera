@@ -7,6 +7,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <meta name="_csrf" content="${_csrf.token}">
+    <meta name="_csrf_header" content="${_csrf.headerName}">
+
+    <script src="${contextPath}/js/product.js"></script>
+    <script>
+        window.contextPath = "${contextPath}";
+    </script>
+
     <link href="${contextPath}/css/style.css" rel="stylesheet">
     <link href="${contextPath}/css/product.css" rel="stylesheet">
 </head>
@@ -65,27 +73,27 @@
                         </div>
                     </sec:authorize>
 
-                    <sec:authorize access="!hasRole('ADMIN')">
-                        <div class="purchase-box">
-                            <form:form modelAttribute="cartItem"
-                                       action="${contextPath}/cart/add"
-                                       method="post">
-
-                                <form:input path="productId" value="${product.id}" type="hidden"/>
+                    <sec:authorize access="hasRole('USER')">
+                        <div class="purchase-box" id="purchase-box">
+                            <form id="add-cart-form">
+                                <input type="hidden" id="productId" name="productId" value="${product.id}"/>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="quantity">수량</label>
-                                    <form:input path="quantity" id="quantity" type="number" min="1"
-                                                cssClass="form-control"/>
-                                    <form:errors path="quantity" element="div" cssClass="field-error"/>
+                                    <input id="quantity" name="quantity" type="number" min="1" class="form-control"
+                                           value="1"/>
                                 </div>
-
-                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
                                 <div class="d-grid">
                                     <button type="submit" class="btn btn-primary">장바구니 추가</button>
                                 </div>
-                            </form:form>
+                            </form>
+                        </div>
+                    </sec:authorize>
+
+                    <sec:authorize access="isAnonymous()">
+                        <div class="purchase-box">
+                            <a href="${contextPath}/auth/login" class="btn btn-primary">로그인 후 장바구니 추가</a>
                         </div>
                     </sec:authorize>
                 </div>

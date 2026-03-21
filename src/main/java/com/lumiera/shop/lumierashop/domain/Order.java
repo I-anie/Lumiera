@@ -14,13 +14,13 @@ public class Order {
 
     private Long id;
     private String username;
-    private Integer totalPrice;
+    private int totalPrice;
     private OrderStatus status;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private LocalDateTime deletedAt;
 
-    public Order(Integer totalPrice, String username) {
+    public Order(int totalPrice, String username) {
         this.totalPrice = totalPrice;
         this.username = username;
     }

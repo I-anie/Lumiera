@@ -8,6 +8,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <meta name="_csrf" content="${_csrf.token}">
+    <meta name="_csrf_header" content="${_csrf.headerName}">
+
+    <script src="${contextPath}/js/cart.js"></script>
+    <script>
+        window.contextPath = "${contextPath}";
+        window.cartItemPath = window.contextPath + "/api/cart/items"
+    </script>
+
     <link href="${contextPath}/css/style.css" rel="stylesheet">
     <link href="${contextPath}/css/cart.css" rel="stylesheet">
 </head>
@@ -47,6 +56,7 @@
                             </tr>
                             </thead>
                             <tbody>
+                            <c:url var="productUrl" value="${contextPath}/products"/>
                             <c:forEach items="${cartItems}" var="cartItem">
                                 <tr>
                                     <td>
@@ -56,33 +66,46 @@
                                                class="cart-item-checkbox"
                                                form="orderForm">
                                     </td>
+
                                     <td>
                                         <a href="${productUrl}/${cartItem.productId}">
                                             <img src="${cartItem.thumbnailUrl}" class="thumbnail-sm"
                                                  alt="${cartItem.name}">
                                         </a>
                                     </td>
+
                                     <td>
                                         <a href="${productUrl}/${cartItem.productId}" class="cart-product-name">
                                                 ${cartItem.name}
                                         </a>
                                     </td>
+
                                     <td class="price-text">${cartItem.price}원</td>
+
                                     <td>
-                                        <form action="${cartUrl}/${cartItem.id}/update" method="post"
-                                              class="cart-quantity-form">
-                                            <input type="hidden" name="productId" value="${cartItem.productId}">
-                                            <input type="number" name="quantity" value="${cartItem.quantity}" min="1"
-                                                   class="form-control cart-quantity-input">
-                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                                            <button class="btn btn-soft" type="submit">변경</button>
-                                        </form>
+                                        <input type="hidden"
+                                               id="productId-${cartItem.id}"
+                                               value="${cartItem.productId}">
+
+                                        <input type="number"
+                                               id="quantity-${cartItem.id}"
+                                               value="${cartItem.quantity}"
+                                               min="1"
+                                               class="form-control cart-quantity-input">
+
+                                        <button type="button"
+                                                id="update-cart-item-${cartItem.id}"
+                                                class="btn btn-soft">
+                                            변경
+                                        </button>
                                     </td>
+
                                     <td>
-                                        <form action="${cartUrl}/${cartItem.id}/delete" method="post">
-                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                                            <button class="btn btn-outline-danger" type="submit">삭제</button>
-                                        </form>
+                                        <button type="button"
+                                                id="delete-cart-item-${cartItem.id}"
+                                                class="btn btn-outline-danger">
+                                            삭제
+                                        </button>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -95,7 +118,7 @@
 
                         <form id="orderForm" action="${orderUrl}/create" method="post">
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                            <button type="submit" class="btn btn-primary">선택 상품 주문</button>
+                            <button type="button" class="btn btn-primary">선택 상품 주문</button>
                         </form>
                     </div>
                 </c:otherwise>

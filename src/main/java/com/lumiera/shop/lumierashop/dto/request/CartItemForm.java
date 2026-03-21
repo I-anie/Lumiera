@@ -16,5 +16,5 @@ public class CartItemForm {
 
     @NotNull(message = "수량을 입력해주세요.")
     @Positive(message = "수량은 최소 1개 이상이어야 합니다.")
-    private Integer quantity;
+    private int quantity;
 }

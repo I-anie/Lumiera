@@ -12,13 +12,13 @@ public class CartItem {
     private Long id;
     private String username;
     private Long productId;
-    private Integer quantity;
+    private int quantity;
 
     public CartItem(Long productId) {
         this.productId = productId;
     }
 
-    public CartItem(Long productId, Integer quantity) {
+    public CartItem(Long productId, int quantity) {
         this.productId = productId;
         this.quantity = quantity;
     }

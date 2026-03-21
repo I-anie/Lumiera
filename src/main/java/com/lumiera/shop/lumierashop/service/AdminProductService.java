@@ -5,7 +5,7 @@ import com.lumiera.shop.lumierashop.dto.request.CreateProductForm;
 import com.lumiera.shop.lumierashop.dto.request.UpdateProductForm;
 import com.lumiera.shop.lumierashop.dto.response.ProductListResponse;
 import com.lumiera.shop.lumierashop.dto.response.ProductResponse;
-import com.lumiera.shop.lumierashop.global.error.exception.CustomException;
+import com.lumiera.shop.lumierashop.global.exception.exception.CustomException;
 import com.lumiera.shop.lumierashop.mapper.AdminProductMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.lang.Nullable;
@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.lumiera.shop.lumierashop.global.error.code.ErrorCode.PRODUCT_NOT_FOUND;
+import static com.lumiera.shop.lumierashop.global.exception.code.ErrorCode.PRODUCT_NOT_FOUND;
 
 @Service
 @RequiredArgsConstructor

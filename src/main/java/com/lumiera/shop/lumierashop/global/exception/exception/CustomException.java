@@ -1,6 +1,6 @@
-package com.lumiera.shop.lumierashop.global.error.exception;
+package com.lumiera.shop.lumierashop.global.exception.exception;
 
-import com.lumiera.shop.lumierashop.global.error.code.ErrorCode;
+import com.lumiera.shop.lumierashop.global.exception.code.ErrorCode;
 import org.springframework.http.HttpStatus;
 
 public class CustomException extends RuntimeException {

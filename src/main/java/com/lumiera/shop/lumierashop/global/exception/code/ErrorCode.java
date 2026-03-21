@@ -1,4 +1,4 @@
-package com.lumiera.shop.lumierashop.global.error.code;
+package com.lumiera.shop.lumierashop.global.exception.code;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
